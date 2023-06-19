@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Register</title>
+</head>
+
+<body>
+    <!---------------------------- Registration Form ---------------------------->
+    <div class="Registration_form">
+        <img style="width: 100px; height: 90px;" class="registration_image" src="img/Avatar-Transparent-Images.png"
+            alt="">
+        <h1>Registration Form</h1>
+        <form action="">
+            <div class="user_details">
+                <div class="input_box">
+                    <label for="">First Name</label>
+                    <input type="text" placeholder="Enter First Name"> <br>
+                </div>
+                <div class="input_box">
+                    <label for="">Last Name</label>
+                    <input type="text" placeholder="Enter Last Name"> <br>
+                </div>
+                <div class="input_box">
+                    <label for="">Email</label>
+                    <input type="email" placeholder="Enter Email"> <br>
+                </div>
+                <div class="input_box">
+                    <label for="">Contact Number</label>
+                    <input type="text" placeholder="Enter Contact Number"> <br>
+                </div>
+                <div class="input_box">
+                    <label for="">Password</label>
+                    <input type="password" placeholder="Enter Password"> <br>
+                </div>
+                <div class="input_box">
+                    <label for="">Confirm Password</label>
+                    <input type="password" placeholder="Confirm Password"> <br>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <select id="parentDropdown" class="parentDropdown" onchange="updateChildOptions()">
+                    <option value="main">Select Degree</option>
+                    <option value="bsc">Bachelor's</option>
+                    <option value="msc">Masters</option>
+
+                </select>
+
+                <select id="childDropdown" onchange="updateGrandchildOptions()">
+                    <!-- <option value="">Year</option> -->
+                    <!-- Options will be dynamically populated based on the parent selection -->
+                </select>
+
+                <select id="grandchildDropdown">
+                    <!-- <option value="">Departement</option> -->
+                    <!-- Options will be dynamically populated based on the child selection -->
+                </select>
+
+            </div>
+
+            <br>
+            <!--------------------- Button --------------------->
+            <a href="index.html">
+                <input class="button" type="button" value="Register">
+            </a>
+        </form>
+    </div>
+
+    <script>
+        function updateChildOptions() {
+            var parentDropdown = document.getElementById("parentDropdown");
+            var childDropdown = document.getElementById("childDropdown");
+            var grandchildDropdown = document.getElementById("grandchildDropdown");
+
+            // Clear existing child and grandchild options
+            childDropdown.innerHTML = "";
+            grandchildDropdown.innerHTML = "";
+
+            // Get selected value from parent dropdown
+            var selectedOption = parentDropdown.value;
+
+            // Based on the selected value, populate the child dropdown options
+            if (selectedOption === "bsc") {
+                childDropdown.innerHTML += "<option>Year</option>";
+                childDropdown.innerHTML += "<option value='childOption1'>4 Year's</option>";
+            } else if (selectedOption === "msc") {
+                childDropdown.innerHTML += "<option>Year</option>";
+                childDropdown.innerHTML += "<option value='childOption2'>2 Year</option>";
+            }
+
+        }
+
+        function updateGrandchildOptions() 
+        {
+            var childDropdown = document.getElementById("childDropdown");
+            var grandchildDropdown = document.getElementById("grandchildDropdown");
+
+            // Clear existing grandchild options
+            grandchildDropdown.innerHTML = "";
+
+            // Get selected value from child dropdown
+            var selectedOption = childDropdown.value;
+
+            // Based on the selected value, populate the grandchild dropdown options
+            if (selectedOption === "childOption1") {
+                grandchildDropdown.innerHTML += "<option>Departement</option>";
+                grandchildDropdown.innerHTML += "<option>BS in Computer Science (B.S.C.S.)</option>";
+                grandchildDropdown.innerHTML += "<option>BS in Chemical Engineering (B.S.Ch.E.)</option>";
+                grandchildDropdown.innerHTML += "<option>BS in Civil Engineering (B.S.C.E.)</option>";
+                grandchildDropdown.innerHTML += "<option>Bachelor of Electrical Engineering (B.E.E.)</option>";
+                grandchildDropdown.innerHTML += "<option>Bachelor of Laws (LL.B.)</option>";
+                grandchildDropdown.innerHTML += "<option>Bachelor of Science (B.S.)</option>";
+                // grandchildDropdown.innerHTML += "<option value='grandchildOption2'>Grandchild Option 2</option>";
+            } else if (selectedOption === "childOption2") {
+                grandchildDropdown.innerHTML += "<option>Departement</option>";
+                grandchildDropdown.innerHTML += "<option>Masters in Civil Engineering</option>";
+                grandchildDropdown.innerHTML += "<option>Masters in Computer Science</option>";
+                grandchildDropdown.innerHTML += "<option>Masters in Data Science</option>";
+                grandchildDropdown.innerHTML += "<option>Masters in Marketing</option>";
+                grandchildDropdown.innerHTML += "<option>Masters in Statistics</option>";
+                // grandchildDropdown.innerHTML += "<option value='grandchildOption4'>Grandchild Option 4</option>";
+            }
+        }
+    
+    </script>
+</body>
+</html>
